@@ -9,7 +9,7 @@ cd Stonks
 
 npx create-react-app stonk-website
 
-cd stonks-website
+cd stonk-website
 
 git init
 
