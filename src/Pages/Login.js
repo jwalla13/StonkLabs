@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-{/* Login HTML  */}
 class Login extends Component{
   render() {
     return (

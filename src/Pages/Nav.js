@@ -2,7 +2,6 @@ import React from 'react';
  
 import { NavLink } from 'react-router-dom';
  
-{/* Nav Bar HTML Present on every page  */}
 const Nav = () => {
     return (
        <div align="center">

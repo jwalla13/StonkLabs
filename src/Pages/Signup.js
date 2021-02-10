@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-{/* Signup Page HTML  */}
 class Signup extends Component{
   render() {
     return (

@@ -1,6 +1,5 @@
 import React from 'react';
- 
-{/* Error Page HTML  */}
+
 const Error = () => {
     return (
        <div align="center">
