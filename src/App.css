@@ -28,6 +28,21 @@
   color: #61dafb;
 }
 
+.search-bar {
+  margin-top: 15px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.search-box {
+  background-color: white;
+  align-items: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
