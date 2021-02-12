@@ -1,10 +1,13 @@
 import React from 'react';
-import axios from 'axios';
+import apiClient from '../Util/apiClient.js'
 import { TextField } from '@material-ui/core';
 
 const SearchBar = (props) => {
   function checkSubmit(event){
-    console.log(event);
+    if(event.code === "Enter"){
+      const ticker = event.target.value
+      apiClient.getStock(ticker, props.setCurrentStock)
+    }
   }
 
   return(
@@ -12,7 +15,7 @@ const SearchBar = (props) => {
       className='search-container'
       variant="outlined"
       placeholder="Search for a stock..."
-      onChange={checkSubmit}
+      onKeyDown={checkSubmit}
      />
   )
 }
