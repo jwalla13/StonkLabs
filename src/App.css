@@ -38,6 +38,17 @@
   margin-top: 10px;
 }
 
+.watchlist {
+  overflow: auto;
+  maxHeight: 1200px;
+  background-color: #8C92AC;
+}
+
+.watchlist-container {
+  background-color: #AAF0D1;
+  maxWidth: 100px;
+}
+
 .detailed-table-container {
   margin-top: 15px;
   display: flex;

@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from 'react'
 import SearchBar from '../Components/SearchBar'
 import StockView from '../Components/StockView'
+import Watchlist from '../Components/Watchlist'
 import { Grid, TextField, Container, Box } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { Spin } from 'antd'
@@ -30,7 +31,7 @@ function DashboardPage(props) {
       <div>
         <Grid container spacing={4}>
           <Grid item xs={6} sm={4}>
-
+            <Watchlist/>
           </Grid>
           <Grid item xs={6} sm={4}>
             <StockDisplay currentStock = {currentStock} />
