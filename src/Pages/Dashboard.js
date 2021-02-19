@@ -4,6 +4,7 @@ import StockView from '../Components/StockView'
 import { Grid, TextField, Container, Box } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { Spin } from 'antd'
+import { makeStyles } from '@material-ui/styles'
 
 function DashboardPage(props) {
   const [currentStock, setCurrentStock] = useState({
