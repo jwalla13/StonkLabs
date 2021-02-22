@@ -94,7 +94,7 @@ class Login extends Component {
   }
 
   makePostCall(character){
-    return axios.post('http://localhost:5000/login', character)
+    return axios.get('http://localhost:5000/login/' + character['username'] + '/' + character['password'])
      .then(function (response) {
        console.log(response);
        return [response.status === 201, response.data]
