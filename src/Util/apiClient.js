@@ -15,7 +15,8 @@ const apiClient = {
         setCurrentStock({
           ticker: tik,
           currentStockInfo: response.data,
-          isLoading: false
+          isLoading: false,
+          view: "basic"
         });
       });
   }

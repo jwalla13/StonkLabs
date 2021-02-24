@@ -21,15 +21,11 @@ function createRow(field, value) {
 function setData(currentStock) {
   var rows = [];
   rows.push(createRow("Price", currentStock.currentStockInfo.price));
-  rows.push(createRow("Sector", currentStock.currentStockInfo.sector));
-  rows.push(createRow("Day High", currentStock.currentStockInfo.dayHigh));
-  rows.push(createRow("Day Low", currentStock.currentStockInfo.dayLow));
-  rows.push(createRow("52 - Week Change", currentStock.currentStockInfo.percentChange));
-  rows.push(createRow("Volume", currentStock.currentStockInfo.volume));
+  rows.push(createRow("Sector", currentStock.currentStockInfo.sector))
   return rows;
 }
 
-function DetailedStockTable(props) {
+function BasicStockTable(props) {
   const currentStock = props.currentStock;
   const rows = setData(currentStock);
 
@@ -53,4 +49,4 @@ function DetailedStockTable(props) {
   );
 }
 
-export default DetailedStockTable;
+export default BasicStockTable;
