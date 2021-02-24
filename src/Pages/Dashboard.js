@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from 'react'
 import SearchBar from '../Components/SearchBar'
-import StockView from '../Components/StockView'
+import BasicStockView from '../Components/BasicStockView'
+import DetailedStockView from '../Components/DetailedStockView'
 import Watchlist from '../Components/Watchlist'
 import { Grid, TextField, Container, Box } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -11,7 +12,8 @@ function DashboardPage(props) {
   const [currentStock, setCurrentStock] = useState({
     isLoading: null,
     ticker: null,
-    currentStockInfo: null
+    currentStockInfo: null,
+    view: null
   })
   const StockDisplay = loadingStock();
 
@@ -34,7 +36,7 @@ function DashboardPage(props) {
             <Watchlist/>
           </Grid>
           <Grid item xs={6} sm={4}>
-            <StockDisplay currentStock = {currentStock} />
+            <StockDisplay currentStock={currentStock} setCurrentStock={setCurrentStock}/>
           </Grid>
           <Grid item xs={6} sm={4}>
 
@@ -46,11 +48,14 @@ function DashboardPage(props) {
 }
 
 function loadingStock() {
-  return function WithLoadingComponent({ currentStock, ...props}) {
+  return function WithLoadingComponent({ currentStock, setCurrentStock, ...props}) {
   if (currentStock.isLoading == null) return <div/>
 
-  else if(!currentStock.isLoading){
-    return <StockView currentStock={currentStock} />
+  else if(!currentStock.isLoading && currentStock.view == "basic"){
+    return <BasicStockView currentStock={currentStock} setCurrentStock={setCurrentStock}/>
+  }
+  else if(!currentStock.isLoading && currentStock.view == "detailed"){
+    return <DetailedStockView currentStock={currentStock} setCurrentStock={setCurrentStock}/>
   }
 
   else{
