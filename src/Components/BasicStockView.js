@@ -15,6 +15,12 @@ function BasicStockView(props) {
     })
   }
 
+  function closeView(){
+    props.setCurrentStock({
+      isLoading: null
+    })
+  }
+
   const StyledButton = withStyles({
     root: {
       borderRadius: 3,
@@ -33,7 +39,7 @@ function BasicStockView(props) {
     <div className='basic-stock-container'>
       <Container>
         <h1 className="stock-header"> {currentStock.ticker} </h1>
-        <StyledButton className="exit-view-button" variant="contained"> <b>X</b> </StyledButton>
+        <StyledButton className="exit-view-button" variant="contained" onClick={closeView}> <b>X</b> </StyledButton>
         <BasicStockTable currentStock = { currentStock }/>
         <StyledButton variant="contained" onClick={changeStockView}> <b>View Details</b> </StyledButton>
       </Container>

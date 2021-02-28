@@ -72,7 +72,8 @@ class Signup extends Component {
   }
 
   makePostCall(character){
-    return axios.post('http://localhost:5000/users', character)
+    return axios.get('http://localhost:5000/c_acc/' + character['firstname'] + '/' + character['lastname'] + '/'
+                    + character['username'] + '/' + character['password'])
      .then(function (response) {
        console.log(response);
        return [response.status === 201, response.data]
