@@ -1,19 +1,58 @@
 import React, { Component, useEffect, useState } from 'react'
-import { Container, Box } from '@material-ui/core';
+import apiClient from '../Util/apiClient.js'
+import { Container, Box, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { borders } from '@material-ui/system';
 
 function Watchlist(props) {
-  const StyledContainer = withStyles({
+  const OuterContainer = withStyles({
     root: {
       border: 1,
-      height: 80,
+      height: 500,
       marginLeft: 5,
       padding: '0 5px',
       float: "right",
       background: "white",
-      boxShadow: '2 1px 1px 1px black',
+      border: "1px black"
     },
   })(Container);
+
+  const ViewButton = withStyles({
+    root: {
+      borderRadius: 3,
+      border: 0,
+      height: 40,
+      marginTop: 5,
+      marginLeft: 5,
+      padding: '0 5px',
+      float: "right",
+      boxShadow: '2 1px 1px 1px black',
+    },
+  })(Button);
+
+  const Frame = withStyles({
+    root: {
+      border: 1,
+      borderRadius: 5,
+      height: 600,
+      background: "white",
+    },
+  })(Container);
+
+  const InnerContainer = withStyles({
+    root: {
+      border: 1,
+      borderRadius: 5,
+      height: 100,
+      marginTop: 4,
+      marginBottom: 1,
+      padding: '0 5px',
+      float: "right",
+      background: "#8C92AC",
+      boxShadow: '0 1px 3px 1px grey',
+    },
+  })(Container);
+
 
   const ValueWithLabel = ({ label, value }) => (
     <div>
@@ -25,7 +64,7 @@ function Watchlist(props) {
 
   const stockList = [
     {
-      name: "APPL",
+      name: "AAPL",
       price: 271
     },
     {
@@ -40,23 +79,42 @@ function Watchlist(props) {
       name: "ABC",
       price: 84
     },
+    {
+      name: "MOCK",
+      price: 21
+    },
+    {
+      name: "SHEESH",
+      price: 46.7
+    },
+    {
+      name: "OVER",
+      price: .73
+    }
   ]
 
+  function viewDetails(event){
+    var ticker = event.target.parentElement.id || event.target.id;
+    apiClient.getStock(ticker, props.setCurrentStock, "detailed")
+  }
+
   return (
-    <Box className="watchlist-box">
-      {stockList.map((stock) => {
-        const stockName = stock.name;
-        const stockPrice = stock.price;
-        return(
-          <li className="list">
-            <StyledContainer>
+    <Frame borderColor="primary.main">
+      <h1> Watchlist </h1>
+      <OuterContainer className="watchlist-box">
+        {stockList.map((stock) => {
+          const stockName = stock.name;
+          const stockPrice = stock.price;
+          return(
+            <InnerContainer>
+              <ViewButton id={stockName} variant="contained" onClick={viewDetails}> View Details </ViewButton>
               <ValueWithLabel label="Name:" value={stockName} />
               <ValueWithLabel label="Price:" value={stockPrice} />
-            </StyledContainer>
-          </li>
-        )
-      })}
-    </Box>
+            </InnerContainer>
+          )
+        })}
+      </OuterContainer>
+    </Frame>
   )
 }
 

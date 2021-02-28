@@ -5,7 +5,7 @@ var apiEndpoint = 'http://127.0.0.1:5000'
 
 const apiClient = {
 
-  getStock: function(tik, setCurrentStock) {
+  getStock: function(tik, setCurrentStock, stockView) {
     const apiUrl = apiEndpoint + '/tik/' + tik;
     setCurrentStock({
       isLoading: true
@@ -16,7 +16,7 @@ const apiClient = {
           ticker: tik,
           currentStockInfo: response.data,
           isLoading: false,
-          view: "basic"
+          view: stockView
         });
       });
   }

@@ -15,7 +15,7 @@ const SearchBar = (props) => {
   function checkSubmit(event){
     if(event.code === "Enter"){
       const ticker = event.target.value
-      apiClient.getStock(ticker, props.setCurrentStock)
+      apiClient.getStock(ticker, props.setCurrentStock, "basic")
     }
   }
 

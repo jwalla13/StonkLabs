@@ -33,7 +33,7 @@ function DashboardPage(props) {
       <div>
         <Grid container spacing={4}>
           <Grid item xs={6} sm={4}>
-            <Watchlist/>
+            <Watchlist setCurrentStock={setCurrentStock}/>
           </Grid>
           <Grid item xs={6} sm={4}>
             <StockDisplay currentStock={currentStock} setCurrentStock={setCurrentStock}/>
