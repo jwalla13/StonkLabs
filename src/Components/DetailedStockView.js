@@ -2,6 +2,8 @@ import React, { Component, useEffect, useState } from 'react'
 import { Container, Box, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import DetailedStockTable from './DetailedStockTable'
+import BuyPrompt from './BuyPrompt'
+import SellPrompt from './SellPrompt'
 
 
 function DetailedStockView(props) {
@@ -25,6 +27,8 @@ function DetailedStockView(props) {
   }
 
   const currentStock = props.currentStock;
+  const loggedUsername = props.loggedUsername;
+  const loggedIn = props.loggedIn;
   console.log(props);
   return (
     <div className='detailed-stock-view'>
@@ -32,6 +36,8 @@ function DetailedStockView(props) {
         <h1 className="stock-header"> {currentStock.ticker} </h1>
         <StyledButton onClick={closeView} className="exit-view-button" variant="contained"> <b> X </b></StyledButton>
         <StyledButton className="add-watchlist-button" variant="contained"> <b> (+) Watchlist </b></StyledButton>
+        <SellPrompt currentStock= { currentStock } loggedUsername = {loggedUsername} loggedIn = {loggedIn}> </SellPrompt>
+        <BuyPrompt currentStock= { currentStock } loggedUsername = {loggedUsername} loggedIn = {loggedIn}> </BuyPrompt>
         <DetailedStockTable currentStock={currentStock}/>
       </Container>
     </div>

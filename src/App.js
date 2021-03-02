@@ -13,26 +13,31 @@ class App extends Component {
 
   state = {
     loggedIn: JSON.parse(localStorage.getItem('loggedIn') || 'false'),
-    username: localStorage.getItem('username') || ''
+    username: localStorage.getItem('username') || '',
+    id : localStorage.getItem('id') || ''
   }
 
   handleLogin = character => {
     this.setState({
       loggedIn: true,
-      username: character['username']
+      username: character['username'],
+      id: character['id']
     }, () => {
     localStorage.setItem('loggedIn', true)
-    localStorage.setItem('username', character['username'])      
+    localStorage.setItem('username', character['username'])
+    localStorage.setItem('id', character['id'])       
   })
   }
 
   handleLogout = () => {
     this.setState({
       loggedIn: false,
-      username: ''
+      username: '',
+      id: ''
     }, () => {
       localStorage.setItem('loggedIn', false)
       localStorage.setItem('username', '')
+      localStorage.setItem('id', '')
     })
   }
 
@@ -40,14 +45,14 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav loggedIn={this.state.loggedIn} loggedUsername={this.state.username} handleLogout={this.handleLogout}/>
+          <Nav loggedIn={this.state.loggedIn} loggedUsername={this.state.username} loggedId={this.state.id} handleLogout={this.handleLogout}/>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route 
               exact
               path='/login'
               render={props => (
-                <Login {...props} handleLogin={this.handleLogin} />
+                <Login {...props} handleLogin={this.handleLogin}/>
               )}
             />
             <Route 
@@ -57,7 +62,13 @@ class App extends Component {
                 <Signup {...props} handleLogin={this.handleLogin} />
               )}
             />
-            <Route exact path='/dashboard' component={Dashboard} />
+            <Route 
+              exact
+              path='/dashboard' 
+              render={props => (
+                <Dashboard {...props} loggedIn={this.state.loggedIn} loggedUsername={this.state.username} loggedId={this.state.id}/>
+              )}
+            />
             <Route exact component={Error} />
           </Switch>
         </div>
