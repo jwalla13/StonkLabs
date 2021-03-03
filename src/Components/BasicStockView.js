@@ -1,8 +1,10 @@
 import React, { Component, useEffect, useState } from 'react'
 import { Container, Box, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-
+import axios from 'axios';
 import BasicStockTable from './BasicStockTable'
+import BuyPrompt from './BuyPrompt'
+import SellPrompt from './SellPrompt'
 
 
 function BasicStockView(props) {
@@ -34,6 +36,8 @@ function BasicStockView(props) {
     },
   })(Button);
   const currentStock = props.currentStock;
+  const loggedUsername = props.loggedUsername;
+  const loggedIn = props.loggedIn;
 
   return (
     <div className='basic-stock-container'>
@@ -42,6 +46,8 @@ function BasicStockView(props) {
         <StyledButton className="exit-view-button" variant="contained" onClick={closeView}> <b>X</b> </StyledButton>
         <BasicStockTable currentStock = { currentStock }/>
         <StyledButton variant="contained" onClick={changeStockView}> <b>View Details</b> </StyledButton>
+        <SellPrompt currentStock= { currentStock } loggedUsername = {loggedUsername} loggedIn = {loggedIn}> </SellPrompt>
+        <BuyPrompt currentStock= { currentStock } loggedUsername = {loggedUsername} loggedIn = {loggedIn}> </BuyPrompt>
       </Container>
     </div>
   )

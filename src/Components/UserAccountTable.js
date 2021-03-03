@@ -13,6 +13,7 @@ const UserTableHead = () => {
   return (
     <TableHead>
       <TableRow>
+        <TableCell>Id</TableCell>
         <TableCell>Username</TableCell>
         <TableCell>First Name</TableCell>
         <TableCell>Last Name</TableCell>
@@ -26,6 +27,7 @@ const UserTableBody = props => {
   const rows = props.characterData.map((row, index) => {
     return (
   <TableRow key={index}>
+    <TableCell>{row.id}</TableCell>
     <TableCell>{row.username}</TableCell>
     <TableCell>{row.firstname}</TableCell>
     <TableCell>{row.lastname}</TableCell>

@@ -43,6 +43,7 @@ class Signup extends Component {
   handleSubmit = character => {
     this.makePostCall(character).then( callResult => {
        if (callResult[0] === true) {
+          character['id'] = callResult[1]['id']
           character['username'] = callResult[1]['username']
           character['firstname'] = callResult[1]['firstname']
           character['lastname'] = callResult[1]['lastname']
