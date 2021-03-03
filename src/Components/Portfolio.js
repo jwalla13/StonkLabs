@@ -9,20 +9,19 @@ import SellPrompt from './SellPrompt'
 
 function Portfolio(props) {
 
-    const [stockList, setStockList] = useState([])
-    const [accountVal, setAccountVal] = useState(0)
+  const [stockList, setStockList] = useState([])
+  const [accountVal, setAccountVal] = useState(0)
 
-    useEffect(() => {
-        axios.get('http://localhost:5000/g_prof/' + props.loggedUsername)
-            .then(res => {
-            const stockListRes = res.data;
-            setStockList( Object.values(stockListRes) );
-            })
-        .catch(function (error) {
-            //Not handling the error. Just logging into the console.
-            console.log(error);
-        });
-    });
+  useEffect(() => {
+    axios.get('http://localhost:5000/g_prof/' + props.loggedUsername)
+      .then(res => {
+        const stockListRes = res.data;
+        setStockList( Object.values(stockListRes) );
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+  });
 
   const OuterContainer = withStyles({
     root: {
