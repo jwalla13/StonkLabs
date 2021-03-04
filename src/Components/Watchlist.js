@@ -61,36 +61,6 @@ function Watchlist(props) {
     </div>
   );
 
-  const stockList = [
-    {
-      name: "AAPL",
-      price: 271
-    },
-    {
-      name: "NIO",
-      price: 52
-    },
-    {
-      name: "BB",
-      price: 76
-    },
-    {
-      name: "ABC",
-      price: 84
-    },
-    {
-      name: "MOCK",
-      price: 21
-    },
-    {
-      name: "SHEESH",
-      price: 46.7
-    },
-    {
-      name: "OVER",
-      price: .73
-    }
-  ]
 
   function viewDetails(event){
     var ticker = event.target.parentElement.id || event.target.id;
@@ -101,8 +71,8 @@ function Watchlist(props) {
     <Frame borderColor="primary.main">
       <h1> Watchlist </h1>
       <OuterContainer className="watchlist-box">
-        {stockList.map((stock) => {
-          const stockName = stock.name;
+        {props.stockList.map((stock) => {
+          const stockName = stock.ticker;
           const stockPrice = stock.price;
           return(
             <InnerContainer>

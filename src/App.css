@@ -76,10 +76,6 @@
   display: inline-block;
 }
 
-.add-watchlist-button {
-  float: right;
-}
-
 .exit-view-button {
   marginLeft: 3px;
   float: right;
