@@ -45,7 +45,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav loggedIn={this.state.loggedIn} loggedUsername={this.state.username} loggedId={this.state.id} handleLogout={this.handleLogout}/>
+          <Nav user={this.state} handleLogout={this.handleLogout}/>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route 
@@ -66,7 +66,7 @@ class App extends Component {
               exact
               path='/dashboard' 
               render={props => (
-                <Dashboard {...props} loggedIn={this.state.loggedIn} loggedUsername={this.state.username} loggedId={this.state.id}/>
+                <Dashboard {...props} user={this.state} loggedIn={this.state.loggedIn} loggedUsername={this.state.username} loggedId={this.state.id}/>
               )}
             />
             <Route exact component={Error} />

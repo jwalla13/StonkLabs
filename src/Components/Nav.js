@@ -28,7 +28,7 @@ class Nav extends Component {
     render() {
         const { classes } = this.props
 
-        if (this.props.loggedIn) {
+        if (this.props.user.loggedIn) {
             return (
                 <Grid container>
                     <AppBar position="static" className={classes.appBarStyle}>
@@ -37,7 +37,7 @@ class Nav extends Component {
                             <Button component={Link} to="/"> Home </Button>
                             <Button component={Link} to="/dashboard"> Dashboard </Button>
                             <AccountCircleIcon className={classes.iconStyle} />
-                            <Typography className={classes.accountStatus}>{this.props.loggedUsername}</Typography>
+                            <Typography className={classes.accountStatus}>{this.props.user.username}</Typography>
                             <Button onClick={this.props.handleLogout}> Logout </Button>
                         </Toolbar>
                     </AppBar>
