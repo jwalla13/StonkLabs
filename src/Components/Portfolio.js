@@ -9,19 +9,8 @@ import SellPrompt from './SellPrompt'
 
 function Portfolio(props) {
 
-  const [stockList, setStockList] = useState([])
-  const [accountVal, setAccountVal] = useState(0)
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/g_prof/' + props.loggedUsername)
-      .then(res => {
-        const stockListRes = res.data;
-        setStockList( Object.values(stockListRes) );
-      })
-      .catch(function (error) {
-          console.log(error);
-      });
-  });
+  const stockList = props.portfolio;
+  const [accountVal, setAccountVal] = useState(0);
 
   const OuterContainer = withStyles({
     root: {
@@ -84,7 +73,7 @@ function Portfolio(props) {
     apiClient.getStock(ticker, props.setCurrentStock, "detailed")
   }
 
-    if (props.loggedIn) {
+    if (props.user.loggedIn && stockList != null) {
         return (
             <Frame borderColor="primary.main">
                 <h1> Portfolio </h1>
@@ -97,8 +86,8 @@ function Portfolio(props) {
                         return(
                             <InnerContainer>
                                 <ViewButton id={stockName} variant="contained" onClick={viewDetails}> View Details </ViewButton>
-                                <SellPrompt currentStock= { stock } loggedUsername = {props.loggedUsername} loggedIn = {props.loggedIn}> </SellPrompt>
-                                <BuyPrompt currentStock= { stock } loggedUsername = {props.loggedUsername} loggedIn = {props.loggedIn}> </BuyPrompt>
+                                <SellPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </SellPrompt>
+                                <BuyPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </BuyPrompt>
                                 <ValueWithLabel label="Name:" value={stockName} />
                                 <ValueWithLabel label="Percentage Change:" value={stockPerc} />
                                 <ValueWithLabel label="Volume:" value={stockVolume} />

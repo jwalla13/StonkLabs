@@ -19,6 +19,61 @@ const apiClient = {
           view: stockView
         });
       });
+  },
+
+  getPortfolio: function(username, setPortfolio) {
+    const apiUrl = 'http://localhost:5000/g_prof/' + username;
+    axios.get(apiUrl)
+      .then(res => {
+        const stockListRes = Object.values(res.data);
+        console.log(stockListRes);
+        setPortfolio({list: stockListRes});
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+  },
+
+  getWatchlist: function(username, setWatchlist) {
+    const apiUrl = 'http://localhost:5000/g_watch/' + username;
+    axios.get(apiUrl)
+      .then(res => {
+        const stockListRes = Object.values(res.data);
+        console.log("running");
+        console.log(stockListRes);
+        setWatchlist({list: stockListRes, isLoading: false});
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+  },
+
+  addToWatchlist: function(username, tik, watchlist, setWatchlist) {
+    const apiUrl = 'http://localhost:5000/add_w/' + username + "/" + tik;
+    axios.get(apiUrl)
+      .then( res => {
+          if (res){
+            this.getWatchlist(username, setWatchlist)
+          }
+        }
+      )
+      .catch(function (error) {
+          console.log(error);
+      });
+  },
+
+  removeFromWatchlist: function(username, tik, watchlist, setWatchlist) {
+    const apiUrl = 'http://localhost:5000/rem_w/' + username + "/" + tik;
+    axios.get(apiUrl)
+      .then( res => {
+          if (res){
+            this.getWatchlist(username, setWatchlist)
+          }
+        }
+      )
+      .catch(function (error) {
+          console.log(error);
+      });
   }
 }
 

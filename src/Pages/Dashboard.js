@@ -1,4 +1,5 @@
 import React, { Component, Typography, useEffect, useState } from 'react'
+import apiClient from '../Util/apiClient.js'
 import SearchBar from '../Components/SearchBar'
 import BasicStockView from '../Components/BasicStockView'
 import DetailedStockView from '../Components/DetailedStockView'
@@ -13,21 +14,35 @@ import BuyPrompt from '../Components/BuyPrompt'
 import Button from '@material-ui/core/Button';
 
 function DashboardPage(props) {
+  const [userInfo,setUserInfo]= useState({
+    username: props.user.username,
+    loggedIn: props.user.loggedIn,
+  })
+
   const [currentStock, setCurrentStock] = useState({
     isLoading: null,
     ticker: null,
     currentStockInfo: null,
     view: null
   })
-  const StockDisplay = loadingStock();
+
+  const [portfolio, setPortfolio] = useState({
+    list: null
+  })
+
+  const [watchlist, setWatchlist] = useState({
+    isLoading: true,
+    list: null
+  })
 
   useEffect(() => {
-    console.log(currentStock)
-  },[currentStock]);
+    apiClient.getPortfolio(userInfo.username, setPortfolio);
+    apiClient.getWatchlist(userInfo.username, setWatchlist);
+  }, [userInfo]);
 
-  function checkSubmit(event){
-    console.log(event);
-  }
+  const StockDisplay = loadingStock();
+  const PortfolioDisplay = loadingPortfolio();
+  const WatchlistDisplay = loadingWatchlist();
 
   return (
     <div>
@@ -37,13 +52,13 @@ function DashboardPage(props) {
       <div>
         <Grid container spacing={4}>
           <Grid item xs={6} sm={4}>
-            <Watchlist setCurrentStock={setCurrentStock}/>
+            <WatchlistDisplay isLoading={watchlist.isLoading} watchlist={watchlist.list} setCurrentStock={setCurrentStock} userInfo={userInfo}/>
           </Grid>
           <Grid item xs={6} sm={4}>
-            <StockDisplay currentStock={currentStock} setCurrentStock={setCurrentStock} loggedUsername={props.loggedUsername} loggedIn={props.loggedIn}/>
+            <StockDisplay currentStock={currentStock} setCurrentStock={setCurrentStock} userInfo={userInfo} watchlist={watchlist.list} setWatchlist={setWatchlist}/>
           </Grid>
           <Grid item xs={6} sm={4}>
-            <Portfolio setCurrentStock={setCurrentStock} loggedUsername={props.loggedUsername} loggedIn={props.loggedIn} />
+            <PortfolioDisplay portfolio={portfolio.list} setCurrentStock={setCurrentStock} userInfo={userInfo}/>
           </Grid>
         </Grid>
       </div>
@@ -52,18 +67,40 @@ function DashboardPage(props) {
 }
 
 function loadingStock() {
-  return function WithLoadingComponent({ currentStock, setCurrentStock, loggedUsername, loggedIn, ...props}) {
-  if (currentStock.isLoading == null) return <div/>
+  return function WithLoadingComponent({ currentStock, setCurrentStock, userInfo, watchlist, setWatchlist, ...props}) {
+    if (currentStock.isLoading == null) return <div/>
 
-  else if(!currentStock.isLoading && currentStock.view == "basic"){
-    return <BasicStockView currentStock={currentStock} setCurrentStock={setCurrentStock} loggedUsername={loggedUsername} loggedIn={loggedIn}/>
-  }
-  else if(!currentStock.isLoading && currentStock.view == "detailed"){
-    return <DetailedStockView currentStock={currentStock} setCurrentStock={setCurrentStock} loggedUsername={loggedUsername} loggedIn={loggedIn}/>
-  }
+    else if(!currentStock.isLoading && currentStock.view == "basic"){
+      return <BasicStockView currentStock={currentStock} setCurrentStock={setCurrentStock} user={userInfo} watchlist={watchlist}/>
+    }
+    else if(!currentStock.isLoading && currentStock.view == "detailed"){
+      return <DetailedStockView currentStock={currentStock} setCurrentStock={setCurrentStock} user={userInfo} watchlist={watchlist} setWatchlist={setWatchlist}/>
+     }
 
-  else{
-    return <div class="loader"></div>
+    else{
+        return <div class="loader"></div>
+  }}}
+
+function loadingPortfolio() {
+       return function WithLoadingComponent({ portfolio, setCurrentStock, userInfo, ...props}) {
+         console.log("right here");
+         console.log(portfolio);
+         if (portfolio != null) {
+           return <Portfolio portfolio={portfolio} setCurrentStock={setCurrentStock} user={userInfo} />
+         }
+
+         else{
+             return <div class="loader"></div>
+       }}}
+
+function loadingWatchlist() {
+  return function WithLoadingComponent({ isLoading, watchlist, setCurrentStock, userInfo, ...props}) {
+    if (!isLoading) {
+      return <Watchlist stockList={watchlist} setCurrentStock={setCurrentStock} user={userInfo} />
+    }
+
+    else{
+        return <div class="loader"></div>
   }}}
 
 export default DashboardPage
