@@ -54,7 +54,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 400px;
   background-color: #8C92AC;
   border-radius: 10px;
   border: 2px solid #2D2E2E;
@@ -66,7 +65,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 400px;
   background-color: #8C92AC;
   border-radius: 5px;
   box-shadow: 2px 2px 2px black;
@@ -81,6 +79,9 @@
   float: right;
 }
 
+.label {
+  font-size: 16px
+}
 .view-details-button {
   margin-top: 3px;
   margin-bottom: 3px;

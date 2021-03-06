@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Typography, Grid } from '@material-ui/core'
+import { Button, Typography, Grid, Container } from '@material-ui/core'
 import { withStyles } from '@material-ui/styles'
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
@@ -26,7 +26,7 @@ const styles = theme => ({
   },
   navButtons: {
   }
-}) 
+})
 
 class Login extends Component {
 
@@ -34,7 +34,7 @@ class Login extends Component {
     characters: [
 
     ]
-  } 
+  }
 
   componentDidMount() {
     axios.get('http://localhost:5000/users')
@@ -112,7 +112,6 @@ class Login extends Component {
 
     return(
         <Grid container direction="column">
-          <UserAccountTable characterData={characters} removeCharacter={this.removeCharacter}/>
           <Grid item container>
             <Grid item xs={3}></Grid>
 
@@ -122,7 +121,7 @@ class Login extends Component {
                 <Button component={Link} to="/signup" size="large" variant="outlined"> Sign Up </Button>
               </Grid>
 
-              <Typography variant="h3" className={classes.loginHeader}>Login</Typography> 
+              <Typography variant="h3" className={classes.loginHeader}>Login</Typography>
               <LoginForm handleSubmit={this.handleSubmit}/>
             </Grid>
             

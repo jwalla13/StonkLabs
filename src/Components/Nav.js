@@ -34,7 +34,6 @@ class Nav extends Component {
                     <AppBar position="static" className={classes.appBarStyle}>
                         <Toolbar>
                             <Typography className={classes.brandStyle}>Stonk Labs</Typography>
-                            <Button component={Link} to="/"> Home </Button>
                             <Button component={Link} to="/dashboard"> Dashboard </Button>
                             <AccountCircleIcon className={classes.iconStyle} />
                             <Typography className={classes.accountStatus}>{this.props.user.username}</Typography>
@@ -50,8 +49,6 @@ class Nav extends Component {
                     <AppBar position="static" className={classes.appBarStyle}>
                         <Toolbar>
                             <Typography className={classes.brandStyle}>Stonk Labs</Typography>
-                            <Button component={Link} to="/"> Home </Button>
-                            <Button component={Link} to="/dashboard"> Dashboard </Button>
                             <AccountCircleIcon className={classes.iconStyle} />
                             <Typography className={classes.accountStatus}>Not Signed In</Typography>
                             <Button component={Link} to="/login"> Login </Button>

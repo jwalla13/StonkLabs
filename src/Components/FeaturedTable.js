@@ -4,11 +4,11 @@ import { Container, Box, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { borders } from '@material-ui/system';
 
-function Watchlist(props) {
+function FeaturedTable(props) {
   const OuterContainer = withStyles({
     root: {
       border: 1,
-      height: 500,
+      height: 280,
       marginLeft: 5,
       padding: '0 5px',
       float: "right",
@@ -34,7 +34,7 @@ function Watchlist(props) {
     root: {
       border: 1,
       borderRadius: 5,
-      height: 600,
+      height: 350,
       background: "white",
     },
   })(Container);
@@ -56,7 +56,7 @@ function Watchlist(props) {
   const ValueWithLabel = ({ label, symbol, value }) => (
     <div>
       <div>
-        <div className="label"> <b> {label} </b>{symbol}{value}</div>
+        <div className="label"> <b> {label} </b> {symbol}{value} </div>
       </div>
     </div>
   );
@@ -66,37 +66,25 @@ function Watchlist(props) {
     var ticker = event.target.parentElement.id || event.target.id;
     apiClient.getStock(ticker, props.setCurrentStock, "detailed")
   }
-  if(props.stockList.length != 0) {
-    return (
-      <Frame borderColor="primary.main">
-        <h1> Watchlist </h1>
-        <OuterContainer className="watchlist-box">
-          {props.stockList.map((stock) => {
-            const stockName = stock.ticker;
-            const stockPrice = stock.price;
-            return(
-              <InnerContainer>
-                <ViewButton id={stockName} variant="contained" onClick={viewDetails}> <b> View Details </b> </ViewButton>
-                <ValueWithLabel label="Name: " value={stockName} />
-                <ValueWithLabel label="Price: " symbol="$" value={stockPrice} />
-              </InnerContainer>
-           )
-          })}
-        </OuterContainer>
-      </Frame>
-    )
-  } else {
-    return(
-      <Frame borderColor="primary.main">
-        <h1> Watchlist </h1>
-        <OuterContainer className="watchlist-box">
-          <InnerContainer>
-            <h2> Add stocks to your watchlist to start tracking them! </h2>
-          </InnerContainer>
-        </OuterContainer>
-      </Frame>
-    )
-  }
+
+  return (
+    <Frame borderColor="primary.main">
+      <h1> Trending Stocks </h1>
+      <OuterContainer className="watchlist-box">
+        {props.stockList.map((stock) => {
+          const stockName = stock.ticker;
+          const stockPrice = stock.price;
+          return(
+            <InnerContainer>
+              <ViewButton id={stockName} variant="contained" onClick={viewDetails}> <b> View Details </b> </ViewButton>
+              <ValueWithLabel label="Name:" value={stockName} />
+              <ValueWithLabel label="Price:" symbol="$" value={stockPrice} />
+            </InnerContainer>
+          )
+        })}
+      </OuterContainer>
+    </Frame>
+  )
 }
 
-export default Watchlist;
+export default FeaturedTable;

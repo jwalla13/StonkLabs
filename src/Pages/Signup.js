@@ -104,7 +104,6 @@ class Signup extends Component {
 
     return (
         <Grid container direction="column">
-          <UserAccountTable characterData={characters} removeCharacter={this.removeCharacter}/>
           <Grid item container>
             <Grid item xs={3}></Grid>
 
