@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react'
-import { Container, Box, Button } from '@material-ui/core';
+import { Container, Box, Button, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import BasicStockTable from './BasicStockTable'
@@ -35,22 +35,43 @@ function BasicStockView(props) {
       boxShadow: '2 1px 1px 1px black',
     },
   })(Button);
+
+  const ErrorContainer = withStyles({
+    root: {
+      borderRadius: 3,
+      marginBottom: 3,
+      height: 30,
+      fontSize: 20,
+      backgroundColor: "white"
+    },
+  })(Container);
+
   const currentStock = props.currentStock;
   const loggedUsername = props.loggedUsername;
   const loggedIn = props.loggedIn;
-
-  return (
-    <div className='basic-stock-container'>
-      <Container>
-        <h1 className="stock-header"> {currentStock.ticker} </h1>
-        <StyledButton className="exit-view-button" variant="contained" onClick={closeView}> <b>X</b> </StyledButton>
-        <BasicStockTable currentStock = { currentStock }/>
-        <StyledButton variant="contained" onClick={changeStockView}> <b>View Details</b> </StyledButton>
-        <SellPrompt currentStock= { currentStock } loggedUsername = {loggedUsername} loggedIn = {loggedIn}> </SellPrompt>
-        <BuyPrompt currentStock= { currentStock } loggedUsername = {loggedUsername} loggedIn = {loggedIn}> </BuyPrompt>
-      </Container>
-    </div>
-  )
+  console.log(currentStock);
+  if (JSON.stringify(currentStock.currentStockInfo) != "{}"){
+    return (
+      <div className='basic-stock-container'>
+        <Container>
+          <h1 className="stock-header"> {currentStock.currentStockInfo.name} ({currentStock.ticker})</h1>
+          <StyledButton className="exit-view-button" variant="contained" onClick={closeView}> <b>X</b> </StyledButton>
+          <BasicStockTable currentStock = { currentStock }/>
+          <StyledButton variant="contained" onClick={changeStockView}> <b>View Details</b> </StyledButton>
+        </Container>
+      </div>
+    )
+  } else {
+    return (
+      <div className='basic-stock-container'>
+        <Container>
+          <h1 className="stock-header"> {currentStock.ticker} </h1>
+          <StyledButton className="exit-view-button" variant="contained" onClick={closeView}> <b>X</b> </StyledButton>
+          <ErrorContainer> No info found for ticker <b> {currentStock.ticker} </b> </ErrorContainer>
+        </Container>
+      </div>
+    )
+  }
 }
 
 

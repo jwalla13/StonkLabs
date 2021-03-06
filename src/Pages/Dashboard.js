@@ -3,6 +3,7 @@ import apiClient from '../Util/apiClient.js'
 import SearchBar from '../Components/SearchBar'
 import BasicStockView from '../Components/BasicStockView'
 import DetailedStockView from '../Components/DetailedStockView'
+import FeaturedTable from '../Components/FeaturedTable'
 import Watchlist from '../Components/Watchlist'
 import Portfolio from '../Components/Portfolio'
 import { Grid, TextField, Container, Box } from '@material-ui/core';
@@ -27,6 +28,7 @@ function DashboardPage(props) {
   })
 
   const [portfolio, setPortfolio] = useState({
+    isLoading: true,
     list: null
   })
 
@@ -35,14 +37,21 @@ function DashboardPage(props) {
     list: null
   })
 
+  const [featuredStocks, setFeaturedStocks] = useState({
+    isLoading: true,
+    list: null
+  })
+
   useEffect(() => {
     apiClient.getPortfolio(userInfo.username, setPortfolio);
     apiClient.getWatchlist(userInfo.username, setWatchlist);
+    apiClient.getFeaturedStocks(setFeaturedStocks);
   }, [userInfo]);
 
   const StockDisplay = loadingStock();
   const PortfolioDisplay = loadingPortfolio();
   const WatchlistDisplay = loadingWatchlist();
+  const FeaturedTableDisplay = loadingFeaturedTable();
 
   return (
     <div>
@@ -52,13 +61,17 @@ function DashboardPage(props) {
       <div>
         <Grid container spacing={4}>
           <Grid item xs={6} sm={4}>
-            <WatchlistDisplay isLoading={watchlist.isLoading} watchlist={watchlist.list} setCurrentStock={setCurrentStock} userInfo={userInfo}/>
+            <WatchlistDisplay isLoading={watchlist.isLoading} watchlist={watchlist.list}
+              setCurrentStock={setCurrentStock} userInfo={userInfo}/>
           </Grid>
           <Grid item xs={6} sm={4}>
-            <StockDisplay currentStock={currentStock} setCurrentStock={setCurrentStock} userInfo={userInfo} watchlist={watchlist.list} setWatchlist={setWatchlist}/>
+            <StockDisplay currentStock={currentStock} setCurrentStock={setCurrentStock}
+              userInfo={userInfo} watchlist={watchlist.list} setWatchlist={setWatchlist} setPortfolio={setPortfolio}/>
+            <FeaturedTableDisplay isLoading={featuredStocks.isLoading} featuredStocks={featuredStocks.list}
+              setCurrentStock={setCurrentStock} userInfo={userInfo} />
           </Grid>
           <Grid item xs={6} sm={4}>
-            <PortfolioDisplay portfolio={portfolio.list} setCurrentStock={setCurrentStock} userInfo={userInfo}/>
+            <PortfolioDisplay isLoading={portfolio.isLoading} portfolio={portfolio.list} setCurrentStock={setCurrentStock} userInfo={userInfo}/>
           </Grid>
         </Grid>
       </div>
@@ -67,14 +80,15 @@ function DashboardPage(props) {
 }
 
 function loadingStock() {
-  return function WithLoadingComponent({ currentStock, setCurrentStock, userInfo, watchlist, setWatchlist, ...props}) {
+  return function WithLoadingComponent({ currentStock, setCurrentStock, userInfo, watchlist, setWatchlist, setPortfolio, ...props}) {
     if (currentStock.isLoading == null) return <div/>
 
     else if(!currentStock.isLoading && currentStock.view == "basic"){
       return <BasicStockView currentStock={currentStock} setCurrentStock={setCurrentStock} user={userInfo} watchlist={watchlist}/>
     }
     else if(!currentStock.isLoading && currentStock.view == "detailed"){
-      return <DetailedStockView currentStock={currentStock} setCurrentStock={setCurrentStock} user={userInfo} watchlist={watchlist} setWatchlist={setWatchlist}/>
+      return <DetailedStockView currentStock={currentStock} setCurrentStock={setCurrentStock} user={userInfo}
+        watchlist={watchlist} setWatchlist={setWatchlist} setPortfolio={setPortfolio}/>
      }
 
     else{
@@ -82,10 +96,8 @@ function loadingStock() {
   }}}
 
 function loadingPortfolio() {
-       return function WithLoadingComponent({ portfolio, setCurrentStock, userInfo, ...props}) {
-         console.log("right here");
-         console.log(portfolio);
-         if (portfolio != null) {
+       return function WithLoadingComponent({ isLoading, portfolio, setCurrentStock, userInfo, ...props}) {
+         if (!isLoading) {
            return <Portfolio portfolio={portfolio} setCurrentStock={setCurrentStock} user={userInfo} />
          }
 
@@ -97,6 +109,16 @@ function loadingWatchlist() {
   return function WithLoadingComponent({ isLoading, watchlist, setCurrentStock, userInfo, ...props}) {
     if (!isLoading) {
       return <Watchlist stockList={watchlist} setCurrentStock={setCurrentStock} user={userInfo} />
+    }
+
+    else{
+        return <div class="loader"></div>
+  }}}
+
+function loadingFeaturedTable() {
+  return function WithLoadingComponent({ isLoading, featuredStocks, setCurrentStock, userInfo, ...props}) {
+    if (!isLoading) {
+      return <FeaturedTable stockList={featuredStocks} setCurrentStock={setCurrentStock} user={userInfo} />
     }
 
     else{

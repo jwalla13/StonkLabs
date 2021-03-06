@@ -2,7 +2,6 @@ import './App.css'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React, { Component } from 'react'
-import Home from './Pages/Home'
 import Login from './Pages/Login'
 import Signup from './Pages/Signup'
 import Nav from './Components/Nav'
@@ -23,6 +22,9 @@ class App extends Component {
       username: character['username'],
       id: character['id']
     }, () => {
+    const siteUrl = window.location.origin;
+    const targetUrl = siteUrl + "/dashboard"
+    window.location.href = targetUrl;
     localStorage.setItem('loggedIn', true)
     localStorage.setItem('username', character['username'])
     localStorage.setItem('id', character['id'])       
@@ -35,6 +37,9 @@ class App extends Component {
       username: '',
       id: ''
     }, () => {
+      const siteUrl = window.location.origin;
+      const targetUrl = siteUrl + "/login"
+      window.location.href = targetUrl;
       localStorage.setItem('loggedIn', false)
       localStorage.setItem('username', '')
       localStorage.setItem('id', '')
@@ -47,7 +52,9 @@ class App extends Component {
         <div>
           <Nav user={this.state} handleLogout={this.handleLogout}/>
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' render={props => (
+              <Signup {...props} handleLogin={this.handleLogin} />
+            )} />
             <Route 
               exact
               path='/login'
@@ -66,7 +73,7 @@ class App extends Component {
               exact
               path='/dashboard' 
               render={props => (
-                <Dashboard {...props} user={this.state} loggedIn={this.state.loggedIn} loggedUsername={this.state.username} loggedId={this.state.id}/>
+                <Dashboard {...props} user={this.state}/>
               )}
             />
             <Route exact component={Error} />

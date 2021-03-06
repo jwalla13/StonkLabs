@@ -1,4 +1,5 @@
 import React from 'react';
+import apiClient from '../Util/apiClient.js'
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -22,7 +23,6 @@ const StyledButton = withStyles({
       borderRadius: 3,
       border: 0,
       height: 40,
-      marginTop: 5,
       marginBottom: 5,
       padding: '0 15px',
       float: "right",
@@ -42,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function BuyPrompt(props) {
+  console.log("props are")
+  console.log(props)
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -50,7 +52,7 @@ function BuyPrompt(props) {
   const currentStock = props.currentStock
 
   const loggedIn = props.loggedIn;
-  const loggedUsername = props.loggedUsername;
+  const username = props.username;
 
   const handleChange = event => {
       const { name, value } = event.target
@@ -65,10 +67,11 @@ function BuyPrompt(props) {
   }
 
   const buyOrder = () => {
-      return axios.get('http://localhost:5000/buy/' + loggedUsername + '/' + 
+      return axios.get('http://localhost:5000/buy/' + username + '/' +
         currentStock.ticker + '/' + buyVolume)
     .then(function (response) {
-        console.log(response);
+        console.log(props.setPortfolio);
+        apiClient.getPortfolio(username, props.setPortfolio)
         return [response.status === 201, response.data]
     })
     .catch (function (error) {

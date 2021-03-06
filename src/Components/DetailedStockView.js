@@ -11,7 +11,12 @@ function DetailedStockView(props) {
   const watchlist = props.watchlist;
   const username = props.user.username;
   const loggedIn = props.user.loggedIn;
-  console.log(props);
+ const setPortfolio = props.setPortfolio;
+
+  const OuterContainer = withStyles({
+    root: {
+    },
+  })(Container);
 
   const StyledButton = withStyles({
     root: {
@@ -19,8 +24,9 @@ function DetailedStockView(props) {
       border: 0,
       height: 40,
       marginTop: 5,
+      marginBottom: 3,
       marginLeft: 5,
-      padding: '0 5px',
+      padding: '0 3px',
       float: "right",
       boxShadow: '2 1px 1px 1px black',
     },
@@ -52,20 +58,18 @@ function DetailedStockView(props) {
     }
     return false;
   }
-
-  console.log(currentStock);
-
+  console.log(props.setPortfolio)
   return (
     <div className='detailed-stock-view'>
-      <Container>
-        <h1 className="stock-header"> {currentStock.ticker} </h1>
+      <OuterContainer>
+        <h1 className="stock-header"> {currentStock.currentStockInfo.name} ({currentStock.ticker}) </h1>
         <StyledButton onClick={closeView} className="exit-view-button" variant="contained"> <b> X </b></StyledButton>
         { inWatchlist() ? <StyledButton onClick={removeFromWatchlist} variant="contained"> <b> (-) Watchlist </b></StyledButton> :
                           <StyledButton onClick={addToWatchlist} variant="contained"> <b> (+) Watchlist </b></StyledButton> }
-        <SellPrompt currentStock= { currentStock } username = {username} loggedIn = {loggedIn}> </SellPrompt>
-        <BuyPrompt currentStock= { currentStock } username = {username} loggedIn = {loggedIn}> </BuyPrompt>
+        <SellPrompt currentStock={ currentStock } username={username} loggedIn={loggedIn} setPortfolio={setPortfolio}> </SellPrompt>
+        <BuyPrompt currentStock={ currentStock } username={username} loggedIn={loggedIn}> setPortfolio={setPortfolio}</BuyPrompt>
         <DetailedStockTable currentStock={currentStock}/>
-      </Container>
+      </OuterContainer>
     </div>
   )
 }

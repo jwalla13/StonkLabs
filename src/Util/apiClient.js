@@ -22,12 +22,13 @@ const apiClient = {
   },
 
   getPortfolio: function(username, setPortfolio) {
+    setPortfolio({ isLoading: true })
     const apiUrl = 'http://localhost:5000/g_prof/' + username;
     axios.get(apiUrl)
       .then(res => {
         const stockListRes = Object.values(res.data);
         console.log(stockListRes);
-        setPortfolio({list: stockListRes});
+        setPortfolio({ isLoading:false, list: stockListRes});
       })
       .catch(function (error) {
           console.log(error);
@@ -39,9 +40,19 @@ const apiClient = {
     axios.get(apiUrl)
       .then(res => {
         const stockListRes = Object.values(res.data);
-        console.log("running");
-        console.log(stockListRes);
         setWatchlist({list: stockListRes, isLoading: false});
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+  },
+
+  getFeaturedStocks: function(setFeaturedStocks) {
+    const apiUrl = 'http://localhost:5000/g_trend';
+    axios.get(apiUrl)
+      .then(res => {
+        const stockListRes = Object.values(res.data);
+        setFeaturedStocks({list: stockListRes, isLoading: false});
       })
       .catch(function (error) {
           console.log(error);

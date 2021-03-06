@@ -22,7 +22,6 @@ const StyledButton = withStyles({
       borderRadius: 3,
       border: 0,
       height: 40,
-      marginTop: 5,
       marginBottom: 5,
       padding: '0 15px',
       float: "right",

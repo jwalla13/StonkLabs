@@ -60,10 +60,10 @@ function Portfolio(props) {
     },
   })(Container);
 
-  const ValueWithLabel = ({ label, value }) => (
+  const ValueWithLabel = ({ label, symbol, value, backSymbol }) => (
     <div>
       <div>
-        <div> <b> {label} </b> {value} </div>
+        <div> <b> {label} </b> {symbol}{value}{backSymbol} </div>
       </div>
     </div>
   );
@@ -74,38 +74,45 @@ function Portfolio(props) {
   }
 
     if (props.user.loggedIn && stockList != null) {
-        return (
-            <Frame borderColor="primary.main">
-                <h1> Portfolio </h1>
-                <OuterContainer className="watchlist-box">
-                    {stockList.map((stock) => {
-                        const stockName = stock.ticker;
-                        const stockPerc = stock.percentage;
-                        const stockVolume = stock.volume;
-                        const positionValue = stock.posValue
-                        return(
-                            <InnerContainer>
-                                <ViewButton id={stockName} variant="contained" onClick={viewDetails}> View Details </ViewButton>
-                                <SellPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </SellPrompt>
-                                <BuyPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </BuyPrompt>
-                                <ValueWithLabel label="Name:" value={stockName} />
-                                <ValueWithLabel label="Percentage Change:" value={stockPerc} />
-                                <ValueWithLabel label="Volume:" value={stockVolume} />
-                                <ValueWithLabel label="Position Value:" value={positionValue} />
-                            </InnerContainer>
-                        )
-                    })}
-                </OuterContainer>
-            </Frame>
-        )
-    }
-    else {
-        return(
-            <Frame borderColor="primary.main">
-                <h1>Portfolio: Not Logged In</h1>
-            </Frame>
-        )
-    }
+        console.log(stockList);
+        if(stockList.length === 0 || stockList[0] === false){
+          return(
+              <Frame borderColor="primary.main">
+                  <h1> Portfolio </h1>
+                  <OuterContainer className="watchlist-box">
+                    <InnerContainer>
+                      <h2> Buy stocks to start your portfolio! </h2>
+                    </InnerContainer>
+                  </OuterContainer>
+              </Frame>
+          )
+        } else{
+          return (
+              <Frame borderColor="primary.main">
+                  <h1> Portfolio </h1>
+                  <OuterContainer className="watchlist-box">
+                      {stockList.map((stock) => {
+                          const stockName = stock.ticker;
+                          const stockPerc = stock.percentage;
+                          const stockVolume = stock.volume;
+                          const positionValue = stock.posValue
+                          return(
+                              <InnerContainer>
+                                  <ViewButton id={stockName} variant="contained" onClick={viewDetails}> View Details </ViewButton>
+                                  <SellPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </SellPrompt>
+                                  <BuyPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </BuyPrompt>
+                                  <ValueWithLabel label="Name:" value={stockName} />
+                                  <ValueWithLabel label="% Change:" backSymbol="%" value={stockPerc} />
+                                  <ValueWithLabel label="Num. Shares:" value={stockVolume} />
+                                  <ValueWithLabel label="Position Value:" symbol="$" value={positionValue} />
+                              </InnerContainer>
+                          )
+                      })}
+                  </OuterContainer>
+              </Frame>
+          )
+      }
+  }
 }
 
 export default Portfolio;
