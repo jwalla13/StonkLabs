@@ -67,7 +67,7 @@ function BuyPrompt(props) {
       return axios.get('http://localhost:5000/buy/' + username + '/' +
         currentStock.ticker + '/' + buyVolume)
     .then(function (response) {
-        apiClient.getPortfolio(username, props.setPortfolio)
+        window.location.reload()
         return [response.status === 201, response.data]
     })
     .catch (function (error) {

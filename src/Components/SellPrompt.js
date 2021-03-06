@@ -66,6 +66,7 @@ function SellPrompt(props) {
       return axios.get('http://localhost:5000/sell/' + loggedUsername + '/' + 
         currentStock.ticker + '/' + sellVolume)
     .then(function (response) {
+        window.location.reload()
         return [response.status === 201, response.data]
     })
     .catch (function (error) {
