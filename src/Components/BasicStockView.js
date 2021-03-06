@@ -49,7 +49,6 @@ function BasicStockView(props) {
   const currentStock = props.currentStock;
   const loggedUsername = props.loggedUsername;
   const loggedIn = props.loggedIn;
-  console.log(currentStock);
   if (JSON.stringify(currentStock.currentStockInfo) != "{}"){
     return (
       <div className='basic-stock-container'>

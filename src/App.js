@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React, { Component } from 'react'
 import Login from './Pages/Login'
 import Signup from './Pages/Signup'
+import Home from './Pages/Home'
 import Nav from './Components/Nav'
 import Error from './Pages/Error'
 import Dashboard from './Pages/Dashboard'
@@ -53,7 +54,7 @@ class App extends Component {
           <Nav user={this.state} handleLogout={this.handleLogout}/>
           <Switch>
             <Route exact path='/' render={props => (
-              <Signup {...props} handleLogin={this.handleLogin} />
+              <Home {...props} user={this.state} handleLogin={this.handleLogin} />
             )} />
             <Route 
               exact

@@ -63,7 +63,10 @@ function Watchlist(props) {
 
 
   function viewDetails(event){
-    var ticker = event.target.parentElement.id || event.target.id;
+    var ticker = event.target.parentElement.id || event.target.id || event.target.parentElement.parentElement.id;
+    console.log(event)
+    console.log("ticker is")
+    console.log(ticker)
     apiClient.getStock(ticker, props.setCurrentStock, "detailed")
   }
   if(props.stockList.length != 0) {
@@ -72,6 +75,7 @@ function Watchlist(props) {
         <h1> Watchlist </h1>
         <OuterContainer className="watchlist-box">
           {props.stockList.map((stock) => {
+            console.log(stock)
             const stockName = stock.ticker;
             const stockPrice = stock.price;
             return(

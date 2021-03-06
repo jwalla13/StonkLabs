@@ -57,7 +57,6 @@ function SellPrompt(props) {
   }
 
   const submitForm = event => {
-      console.log(sellVolume)
       event.preventDefault()
       sellOrder()
       handleClose()
@@ -67,7 +66,6 @@ function SellPrompt(props) {
       return axios.get('http://localhost:5000/sell/' + loggedUsername + '/' + 
         currentStock.ticker + '/' + sellVolume)
     .then(function (response) {
-        console.log(response);
         return [response.status === 201, response.data]
     })
     .catch (function (error) {

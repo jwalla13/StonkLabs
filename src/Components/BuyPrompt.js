@@ -42,8 +42,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function BuyPrompt(props) {
-  console.log("props are")
-  console.log(props)
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -60,7 +58,6 @@ function BuyPrompt(props) {
   }
 
   const submitForm = event => {
-      console.log(buyVolume)
       event.preventDefault()
       buyOrder()
       handleClose()
@@ -70,7 +67,6 @@ function BuyPrompt(props) {
       return axios.get('http://localhost:5000/buy/' + username + '/' +
         currentStock.ticker + '/' + buyVolume)
     .then(function (response) {
-        console.log(props.setPortfolio);
         apiClient.getPortfolio(username, props.setPortfolio)
         return [response.status === 201, response.data]
     })

@@ -58,7 +58,7 @@ function DetailedStockView(props) {
     }
     return false;
   }
-  console.log(props.setPortfolio)
+
   return (
     <div className='detailed-stock-view'>
       <OuterContainer>

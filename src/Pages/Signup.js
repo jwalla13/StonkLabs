@@ -22,6 +22,7 @@ const styles = theme => ({
 }) 
 
 class Signup extends Component {
+
   state = {
     characters: [
 

@@ -74,7 +74,6 @@ function Portfolio(props) {
   }
 
     if (props.user.loggedIn && stockList != null) {
-        console.log(stockList);
         if(stockList.length === 0 || stockList[0] === false){
           return(
               <Frame borderColor="primary.main">
