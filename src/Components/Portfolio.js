@@ -97,7 +97,7 @@ function Portfolio(props) {
                           const positionValue = stock.posValue
                           return(
                               <InnerContainer>
-                                  <ViewButton id={stockName} variant="contained" onClick={viewDetails}> View Details </ViewButton>
+                                  <ViewButton id={stockName} variant="contained" onClick={viewDetails}> <b> View Details </b> </ViewButton>
                                   <SellPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </SellPrompt>
                                   <BuyPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </BuyPrompt>
                                   <ValueWithLabel label="Name:" value={stockName} />

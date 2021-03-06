@@ -34,7 +34,6 @@ class Nav extends Component {
                     <AppBar position="static" className={classes.appBarStyle}>
                         <Toolbar>
                             <Typography className={classes.brandStyle}>Stonk Labs</Typography>
-                            <Button component={Link} to="/dashboard"> Dashboard </Button>
                             <AccountCircleIcon className={classes.iconStyle} />
                             <Typography className={classes.accountStatus}>{this.props.user.username}</Typography>
                             <Button onClick={this.props.handleLogout}> Logout </Button>
