@@ -53,7 +53,7 @@ function BasicStockView(props) {
     return (
       <div className='basic-stock-container'>
         <Container>
-          <h4 className="stock-header"> {currentStock.currentStockInfo.name} ({currentStock.ticker})</h4>
+          <h4 className="stock-header"> {currentStock.currentStockInfo.Name} ({currentStock.ticker})</h4>
           <StyledButton className="exit-view-button" variant="contained" onClick={closeView}> <b>X</b> </StyledButton>
           <BasicStockTable currentStock = { currentStock }/>
           <StyledButton variant="contained" onClick={changeStockView}> <b>View Details</b> </StyledButton>

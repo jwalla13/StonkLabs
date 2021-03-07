@@ -20,8 +20,8 @@ function createRow(field, value) {
 
 function setData(currentStock) {
   var rows = [];
-  rows.push(createRow("Price", "$" + currentStock.currentStockInfo.price));
-  rows.push(createRow("Sector", currentStock.currentStockInfo.sector))
+  rows.push(createRow("Price", "$" + currentStock.currentStockInfo.Price));
+  rows.push(createRow("Sector", currentStock.currentStockInfo.Sector))
   return rows;
 }
 
