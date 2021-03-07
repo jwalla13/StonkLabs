@@ -69,9 +69,9 @@ function FeaturedTable(props) {
 
   return (
     <Frame borderColor="primary.main">
-      <h1> Trending Stocks </h1>
+      <h1> Biggest Movers </h1>
       <OuterContainer className="watchlist-box">
-        {props.stockList.map((stock) => {
+        {props.moverStocks.map((stock) => {
           const stockName = stock.ticker;
           const stockPrice = stock.price;
           return(

@@ -59,6 +59,18 @@ const apiClient = {
       });
   },
 
+  getMoverStocks: function(setMoverStocks) {
+    const apiUrl = 'http://localhost:5000/g_move';
+    axios.get(apiUrl)
+      .then(res => {
+        const stockListRes = Object.values(res.data);
+        setMoverStocks({list: stockListRes, isLoading: false});
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+  },
+
   addToWatchlist: function(username, tik, watchlist, setWatchlist) {
     const apiUrl = 'http://localhost:5000/add_w/' + username + "/" + tik;
     axios.get(apiUrl)
