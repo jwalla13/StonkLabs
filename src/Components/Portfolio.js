@@ -95,17 +95,19 @@ function Portfolio(props) {
                           const stockPerc = stock.percentage;
                           const stockVolume = stock.volume;
                           const positionValue = stock.posValue
-                          return(
-                              <InnerContainer>
-                                  <ViewButton id={stockName} variant="contained" onClick={viewDetails}> <b> View Details </b> </ViewButton>
-                                  <SellPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </SellPrompt>
-                                  <BuyPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </BuyPrompt>
-                                  <ValueWithLabel label="Name:" value={stockName} />
-                                  <ValueWithLabel label="% Change:" backSymbol="%" value={stockPerc} />
-                                  <ValueWithLabel label="Num. Shares:" value={stockVolume} />
-                                  <ValueWithLabel label="Position Value:" symbol="$" value={positionValue} />
-                              </InnerContainer>
-                          )
+                          if (stockVolume > 0) {
+                            return(
+                                <InnerContainer>
+                                    <ViewButton id={stockName} variant="contained" onClick={viewDetails}> <b> View Details </b> </ViewButton>
+                                    <SellPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </SellPrompt>
+                                    <BuyPrompt currentStock= { stock } loggedUsername = {props.user.username} loggedIn = {props.user.loggedIn}> </BuyPrompt>
+                                    <ValueWithLabel label="Name:" value={stockName} />
+                                    <ValueWithLabel label="% Change:" backSymbol="%" value={stockPerc} />
+                                    <ValueWithLabel label="Num. Shares:" value={stockVolume} />
+                                    <ValueWithLabel label="Position Value:" symbol="$" value={positionValue} />
+                                </InnerContainer>
+                            )
+                          }
                       })}
                   </OuterContainer>
               </Frame>

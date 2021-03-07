@@ -33,7 +33,6 @@ class LoginForm extends Component {
         if (this.state.username != '' && this.state.password != '') {
             this.props.handleSubmit(this.state)
             this.setState(this.initialState)
-            console.log("Success submission")
             event.preventDefault()
         }
     }

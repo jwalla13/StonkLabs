@@ -39,7 +39,7 @@ class App extends Component {
       id: ''
     }, () => {
       const siteUrl = window.location.origin;
-      const targetUrl = siteUrl + "/login"
+      const targetUrl = siteUrl + "/"
       window.location.href = targetUrl;
       localStorage.setItem('loggedIn', false)
       localStorage.setItem('username', '')
