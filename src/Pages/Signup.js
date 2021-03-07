@@ -5,6 +5,10 @@ import { withStyles } from '@material-ui/styles'
 import UserAccountTable from '../Components/UserAccountTable'
 import SignUpForm from '../Components/SignUpForm'
 import axios from 'axios';
+import Alert from '@material-ui/lab/Alert';
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
   loginModule: {
@@ -26,7 +30,8 @@ class Signup extends Component {
   state = {
     characters: [
 
-    ]
+    ],
+    open: false
   } 
 
   componentDidMount() {
@@ -52,7 +57,15 @@ class Signup extends Component {
           this.setState({ characters: [...this.state.characters, character] });
           this.handleRegSuccess(character)
        }
+       else {
+        this.handleRegError()
+       }
     });
+  }
+
+  handleRegError = () => {
+    console.log("signup error!")
+    this.setState({open : true})
   }
 
   handleRegSuccess = character => {
@@ -109,6 +122,25 @@ class Signup extends Component {
             <Grid item xs={3}></Grid>
 
             <Grid className={classes.loginModule} item container xs={6} direction="column">
+            <Collapse in={this.state.open}>
+                <Alert
+                severity="error"
+                action={
+                <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  this.setState({open: false});
+                }}
+                >
+                <CloseIcon fontSize="inherit" />
+                </IconButton>
+                }
+                >
+                Username already taken!
+                </Alert>
+              </Collapse>
               <Grid item className={classes.navButtons}>
                 <Button component={Link} to="/login" size="large" variant="outlined"> Login </Button>
                 <Button component={Link} to="/signup" disabled size="large" variant="outlined"> Sign Up </Button>

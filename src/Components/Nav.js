@@ -5,25 +5,40 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/styles'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ShowChartIcon from '@material-ui/icons/ShowChart';
 import { withStyles } from '@material-ui/styles'
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Fade from '@material-ui/core/Fade';
  
 const styles = theme => ({
-    brandStyle: {
-        flex : 1,
-        color : "black"
-    },
-    iconStyle: {
-        color : "black"
-    },
-    accountStatus: {
+    appBarStyle: {
+        backgroundColor: "#AAF0D1",
         color: "black"
     },
-    appBarStyle: {
-        backgroundColor: "#AAF0D1"
-    } 
+    rightElements: {
+        float : "right"
+    }
 })
 
 class Nav extends Component {
+
+    state = {
+        anchor: null
+    }
+
+    handleClick = event => {
+        this.setState({anchor: event.currentTarget})
+    }
+
+    handleClose = () => {
+        this.setState({anchor: null})
+    }
+
+    handleNavLogout = () => {
+        this.setState({anchor: null});
+        this.props.handleLogout();
+    }
 
     render() {
         const { classes } = this.props
@@ -32,11 +47,27 @@ class Nav extends Component {
             return (
                 <Grid container>
                     <AppBar position="static" className={classes.appBarStyle}>
-                        <Toolbar>
+                        <Toolbar className={classes.toolBarStyle}>
+                            <ShowChartIcon/>
                             <Typography className={classes.brandStyle}>Stonk Labs</Typography>
                             <AccountCircleIcon className={classes.iconStyle} />
-                            <Typography className={classes.accountStatus}>{this.props.user.username}</Typography>
-                            <Button onClick={this.props.handleLogout}> Logout </Button>
+                            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+                                {this.props.user.username}
+                            </Button>
+                            <Menu
+                                TransitionComponent={Fade}
+                                id="simple-menu"
+                                anchorEl={this.state.anchor}
+                                keepMounted
+                                open={Boolean(this.state.anchor)}
+                                onClose={this.handleClose}
+                            >
+                                <MenuItem 
+                                    component={Link} to="/login"
+                                    onClick={this.handleNavLogout}>
+                                        Logout
+                                </MenuItem>
+                            </Menu>
                         </Toolbar>
                     </AppBar>
                 </Grid>
@@ -47,11 +78,31 @@ class Nav extends Component {
                 <Grid container>
                     <AppBar position="static" className={classes.appBarStyle}>
                         <Toolbar>
-                            <Typography className={classes.brandStyle}>Stonk Labs</Typography>
-                            <AccountCircleIcon className={classes.iconStyle} />
-                            <Typography className={classes.accountStatus}>Not Signed In</Typography>
-                            <Button component={Link} to="/login"> Login </Button>
-                            <Button component={Link} to="/signup"> Signup </Button>
+                            <ShowChartIcon/>
+                            <Typography>Stonk Labs</Typography>
+                            <AccountCircleIcon/>
+                            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+                                Not Signed In
+                            </Button>
+                            <Menu
+                                TransitionComponent={Fade}
+                                id="simple-menu"
+                                anchorEl={this.state.anchor}
+                                keepMounted
+                                open={Boolean(this.state.anchor)}
+                                onClose={this.handleClose}
+                            >
+                                <MenuItem 
+                                    component={Link} to="/login"
+                                    onClick={this.handleClose}>
+                                        Login
+                                </MenuItem>
+                                <MenuItem 
+                                    component={Link} to="/signup" 
+                                    onClick={this.handleClose}>
+                                        Signup
+                                </MenuItem>
+                            </Menu>
                         </Toolbar>
                     </AppBar>
                 </Grid>

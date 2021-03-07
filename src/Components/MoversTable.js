@@ -1,5 +1,5 @@
-import React, { Component, useEffect, useState } from 'react'
-import apiClient from '../Util/apiClient.js'
+import React, { Component, useEffect, useState } from 'react';
+import apiClient from '../Util/apiClient.js';
 import { Container, Box, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { borders } from '@material-ui/system';

@@ -50,7 +50,7 @@ function BuyPrompt(props) {
   const currentStock = props.currentStock
 
   const loggedIn = props.loggedIn;
-  const username = props.username;
+  const username = props.loggedUsername;
 
   const handleChange = event => {
       const { name, value } = event.target

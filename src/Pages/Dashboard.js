@@ -17,7 +17,7 @@ import Button from '@material-ui/core/Button';
 
 
 function DashboardPage(props) {
-  const [userInfo,setUserInfo]= useState({
+  const [userInfo, setUserInfo]= useState({
     username: props.user.username,
     loggedIn: props.user.loggedIn,
   })
