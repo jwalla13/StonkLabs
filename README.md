@@ -1,25 +1,26 @@
-# StonkLabs
-CPE 307 Team Assignment - Stocks Dashboard
-
-To start your own project...
-
-mkdir Stonks
-
-cd Stonks
-
-npx create-react-app stonk-website
-
-cd stonk-website
-
-git init
-
-git remote add origin https://github.com/jwalla13/StonkLabs
-
-git pull
+# StonkLabs Project Description
+Welcome!
+StonkLabs is a mock trading website for beginning traders.
+On our website, users start by creating an account. Users are then able to create their own watchlist
+to keep track of stocks that they are considering buying, as well as a portfolio to track stocks that 
+they have decided to purchase. Once a stock is purchased, users are able to keep track of the percent
+change in their portfolio to see if they're ready to take on real trading! To help new users explore 
+stocks, we have provided a list of trending stocks, as well as the biggest movers for each day. 
+Good luck and happy trading!
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# Style
+# UI - Initial Prototype
+https://www.figma.com/file/cDR1gxbFnbCESOcPGTMJzu/StonkTracker?node-id=3%3A3
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Diagrams
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Set Up Your Style Guide
 
 For Python Code Contributers Follow: http://pylint.pycqa.org/en/latest/
 
