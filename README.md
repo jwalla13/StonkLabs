@@ -10,12 +10,11 @@ stocks, we have provided a list of trending stocks, as well as the biggest mover
 
 Good luck and happy trading!
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 
 # UI - Initial Prototype
 https://www.figma.com/file/cDR1gxbFnbCESOcPGTMJzu/StonkTracker?node-id=3%3A3
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # Development Environment Set Up
 **FRONT END:**
@@ -47,7 +46,6 @@ Open terminal and navigate to target project folder
 # Diagrams (need to update Class Diagram)
 https://github.com/jwalla13/StonkLabs/wiki
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # Continuous Integration (Travis)
 
@@ -55,7 +53,6 @@ Front End: https://travis-ci.com/github/jwalla13/StonkLabs
 
 Back End: https://travis-ci.com/github/WesReynolds/StonksBackend
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # Set Up Your Style Guide
 
