@@ -18,7 +18,7 @@ https://www.figma.com/file/cDR1gxbFnbCESOcPGTMJzu/StonkTracker?node-id=3%3A3
 
 # Development Environment Set Up
 **FRONT END:**
-Open terminal and navigate to target project folder
+Open terminal and navigate to target front end project folder
 1) Git init 
 2) Git remote add origin https://github.com/jwalla13/StonkLabs
 3) Git pull origin master
@@ -32,7 +32,7 @@ Open terminal and navigate to target project folder
 
 **Back End:**
 
-Open terminal and navigate to target project folder
+Open terminal and navigate to target back end project folder
 1) Git init
 2) Git remote add origin https://github.com/WesReynolds/StonksBackend
 3) Git pull origin master
