@@ -43,7 +43,7 @@ Open terminal and navigate to target project folder
 9) export FLASK_ENV=development
 10) flask run
 
-# Diagrams (need to update Class Diagram)
+# Diagrams
 https://github.com/jwalla13/StonkLabs/wiki
 
 
