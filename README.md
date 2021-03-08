@@ -7,6 +7,7 @@ to keep track of stocks that they are considering buying, as well as a portfolio
 they have decided to purchase. Once a stock is purchased, users are able to keep track of the percent
 change in their portfolio to see if they're ready to take on real trading! To help new users explore 
 stocks, we have provided a list of trending stocks, as well as the biggest movers for each day. 
+
 Good luck and happy trading!
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -18,6 +19,20 @@ https://www.figma.com/file/cDR1gxbFnbCESOcPGTMJzu/StonkTracker?node-id=3%3A3
 
 # Development Environment Set Up
 **FRONT END:**
+Open terminal and navigate to target project folder
+1) Git init 
+2) Git add origin https://github.com/jwalla13/StonkLabs
+3) Git pull origin master
+4) *Confirm you have 'npm' installed by typing 'npm --version', otherwise follow the instructions here: https://nodejs.org/en/download/ 
+5) npm install axios
+6) npm install antd
+7) npm install @material-ui/core
+8) npm install @material-ui/icons
+9) npm install @material-ui/lab
+10) npm start
+
+**BACK END: **
+1) 
 
 # Diagrams (need to update Class Diagram)
 https://github.com/jwalla13/StonkLabs/wiki
