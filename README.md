@@ -50,7 +50,9 @@ https://github.com/jwalla13/StonkLabs/wiki
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 **CI**
+
 Front End: https://travis-ci.com/github/jwalla13/StonkLabs
+
 Back End: https://travis-ci.com/github/WesReynolds/StonksBackend
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
