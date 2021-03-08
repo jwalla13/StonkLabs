@@ -20,7 +20,7 @@ https://www.figma.com/file/cDR1gxbFnbCESOcPGTMJzu/StonkTracker?node-id=3%3A3
 **FRONT END:**
 Open terminal and navigate to target project folder
 1) Git init 
-2) Git add origin https://github.com/jwalla13/StonkLabs
+2) Git remote add origin https://github.com/jwalla13/StonkLabs
 3) Git pull origin master
 4) *Confirm you have 'npm' installed by typing 'npm --version', otherwise follow the instructions here: https://nodejs.org/en/download/ 
 5) npm install axios
