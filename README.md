@@ -1,5 +1,6 @@
 # StonkLabs Project Description
 Welcome!
+
 StonkLabs is a mock trading website for beginning traders.
 On our website, users start by creating an account. Users are then able to create their own watchlist
 to keep track of stocks that they are considering buying, as well as a portfolio to track stocks that 
@@ -15,8 +16,11 @@ https://www.figma.com/file/cDR1gxbFnbCESOcPGTMJzu/StonkTracker?node-id=3%3A3
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# Diagrams
+# Development Environment Set Up
+**FRONT END:**
 
+# Diagrams (need to update Class Diagram)
+https://github.com/jwalla13/StonkLabs/wiki
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
