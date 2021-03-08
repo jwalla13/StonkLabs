@@ -1,5 +1,4 @@
 import './App.css'
-import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import React, { Component } from 'react'
 import Login from './Pages/Login'

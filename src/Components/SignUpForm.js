@@ -1,7 +1,5 @@
 import TextField from '@material-ui/core/TextField'
-import { Button, Typography, Grid } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
-import createData from '../Components/UserAccountTable'
+import { Button } from '@material-ui/core'
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/styles'
 
@@ -14,7 +12,6 @@ const styles = theme => ({
     },
   }) 
 
-// issue: on successful form submit, required error tag will still show
 class SignUpForm extends Component {
 
     initialState = {
@@ -35,7 +32,7 @@ class SignUpForm extends Component {
     }
 
     submitForm = event => {
-        if (this.state.username != '' && this.state.firstname != '' && this.state.lastname != '' && this.state.password != '') {
+        if (this.state.username !== '' && this.state.firstname !== '' && this.state.lastname !== '' && this.state.password !== '') {
             this.props.handleSubmit(this.state)
             this.setState(this.initialState)
             event.preventDefault()
@@ -56,7 +53,6 @@ class SignUpForm extends Component {
                     value={firstname}
                     required
                     margin="normal"
-                    fullwidth
                     autoFocus
                     onChange={this.handleChange}
                 />
@@ -70,7 +66,6 @@ class SignUpForm extends Component {
                     value={lastname}
                     required
                     margin="normal"
-                    fullwidth
                     onChange={this.handleChange}
                 />
                 </div>
@@ -83,7 +78,6 @@ class SignUpForm extends Component {
                     value={username}
                     required
                     margin="normal"
-                    fullwidth
                     onChange={this.handleChange}
                 />
                 </div>
@@ -96,7 +90,6 @@ class SignUpForm extends Component {
                     value={password}
                     required
                     margin="normal"
-                    fullwidth
                     type="password"
                     autoComplete="current-password"
                     onChange={this.handleChange}
@@ -106,8 +99,8 @@ class SignUpForm extends Component {
                 <Button
                     type="submit"
                     value="Submit"
-                    fullWidth
                     variant="contained"
+                    fullWidth
                     className={classes.submitStyle}
                     onClick={this.submitForm}
                 >

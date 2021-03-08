@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField'
-import { Button, Typography, Grid } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Button } from '@material-ui/core'
 import { withStyles } from '@material-ui/styles'
 
 const styles = theme => ({
@@ -14,6 +13,7 @@ const styles = theme => ({
   }) 
 
 class LoginForm extends Component {
+    
     initialState = {
         username: '',
         password: '',
@@ -30,7 +30,7 @@ class LoginForm extends Component {
     }
 
     submitForm = event => {
-        if (this.state.username != '' && this.state.password != '') {
+        if (this.state.username !== '' && this.state.password !== '') {
             this.props.handleSubmit(this.state)
             this.setState(this.initialState)
             event.preventDefault()
@@ -51,7 +51,6 @@ class LoginForm extends Component {
                         value={username}
                         required
                         margin="normal"
-                        fullwidth
                         autoFocus
                         onChange={this.handleChange}
                         />
@@ -65,7 +64,6 @@ class LoginForm extends Component {
                         value={password}
                         required
                         margin="normal"
-                        fullwidth
                         type="password"
                         autoComplete="current-password"
                         onChange={this.handleChange}

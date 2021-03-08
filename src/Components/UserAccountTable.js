@@ -1,13 +1,12 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, Typography, Grid } from '@material-ui/core'
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import React from 'react'
+import { Button } from '@material-ui/core'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
 
 const UserTableHead = () => {
   return (
@@ -26,16 +25,16 @@ const UserTableHead = () => {
 const UserTableBody = props => {
   const rows = props.characterData.map((row, index) => {
     return (
-  <TableRow key={index}>
-    <TableCell>{row.id}</TableCell>
-    <TableCell>{row.username}</TableCell>
-    <TableCell>{row.firstname}</TableCell>
-    <TableCell>{row.lastname}</TableCell>
-    <TableCell>{row.password}</TableCell>
-    <TableCell>
-      <Button onClick={() => props.removeCharacter(index)}>Delete</Button>
-    </TableCell>
-  </TableRow>
+      <TableRow key={index}>
+        <TableCell>{row.id}</TableCell>
+        <TableCell>{row.username}</TableCell>
+        <TableCell>{row.firstname}</TableCell>
+        <TableCell>{row.lastname}</TableCell>
+        <TableCell>{row.password}</TableCell>
+        <TableCell>
+          <Button onClick={() => props.removeCharacter(index)}>Delete</Button>
+        </TableCell>
+      </TableRow>
     )
   })
 

@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 const Error = () => {
-    return (
-       <div align="center">
-          Error: Page does not exist!
-       </div>
-    );
+  return (
+    <div align='center'>
+      Error: Page does not exist!
+    </div>
+  )
 }
- 
-export default Error;
+
+export default Error

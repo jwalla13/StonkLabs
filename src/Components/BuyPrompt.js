@@ -1,34 +1,25 @@
-import React from 'react';
-import apiClient from '../Util/apiClient.js'
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import React from 'react'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
+import Modal from '@material-ui/core/Modal'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 import axios from 'axios'
+import { green } from '@material-ui/core/colors'
+import Alert from '@material-ui/lab/Alert'
+import Collapse from '@material-ui/core/Collapse'
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
 
-function getModalStyle() {
-  const top = 50;
-  const left = 50;
+function getModalStyle () {
+  const top = 50
+  const left = 50
 
   return {
     top: `${top}%`,
     left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
+    transform: `translate(-${top}%, -${left}%)`
+  }
 }
-
-const StyledButton = withStyles({
-    root: {
-      borderRadius: 3,
-      border: 0,
-      height: 40,
-      marginBottom: 5,
-      padding: '0 15px',
-      float: "right",
-      boxShadow: '2 1px 1px 1px black',
-    },
-  })(Button);
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,87 +28,128 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
+    padding: theme.spacing(2, 4, 3)
+  }
+}))
 
-function BuyPrompt(props) {
-  const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
+function BuyPrompt (props) {
+  const classes = useStyles()
+  const [modalStyle] = React.useState(getModalStyle)
+  const [open, setOpen] = React.useState(false)
+  const [openAlert0, setOpenAlert0] = React.useState(false)
 
   const [buyVolume, setBuyVolume] = React.useState(0)
   const currentStock = props.currentStock
 
-  const loggedIn = props.loggedIn;
-  const username = props.loggedUsername;
+  const username = props.loggedUsername
 
   const handleChange = event => {
-      const { name, value } = event.target
-      setBuyVolume(value)
+    const { value } = event.target
+    setBuyVolume(value)
   }
 
   const submitForm = event => {
-      event.preventDefault()
-      buyOrder()
-      handleClose()
+    event.preventDefault()
+    buyOrder()
   }
 
+  const ColorButton = withStyles((theme) => ({
+    root: {
+      color: theme.palette.getContrastText(green[500]),
+      backgroundColor: green[500],
+      '&:hover': {
+        backgroundColor: green[700]
+      },
+      float: 'right',
+      borderRadius: 3,
+      border: 0,
+      height: 40,
+      marginTop: 5,
+      marginLeft: 5,
+      padding: '0 5px',
+      boxShadow: '2 1px 1px 1px black'
+    }
+  }))(Button)
+
   const buyOrder = () => {
-      return axios.get('http://localhost:5000/buy/' + username + '/' +
+    return axios.get('http://localhost:5000/buy/' + username + '/' +
         currentStock.ticker + '/' + buyVolume)
-    .then(function (response) {
-        window.location.reload()
-        return [response.status === 201, response.data]
-    })
-    .catch (function (error) {
-        console.log(error);
-        return false;
-    })
+      .then(function (response) {
+        console.log(response)
+        if (response.data.success === true) {
+          window.location.reload()
+          return [response.status === 201, response.data]
+        } else if (response.data.error === 99) {
+          setOpenAlert0(true)
+        }
+      })
+      .catch(function (error) {
+        console.log(error)
+        return false
+      })
   }
 
   const handleOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Buy {currentStock.ticker}</h2>
+      <Collapse in={openAlert0}>
+        <Alert
+          severity='error'
+          action={
+            <IconButton
+              aria-label='close'
+              color='inherit'
+              size='small'
+              onClick={() => {
+                setOpenAlert0(false)
+              }}
+            >
+              <CloseIcon fontSize='inherit' />
+            </IconButton>
+          }
+        >
+          Cannot buy 0 stock!
+        </Alert>
+      </Collapse>
+      <h2 id='simple-modal-title'>Buy {currentStock.ticker}</h2>
       <form>
         <TextField
-            id="standard-number"
-            label="Volume"
-            type="number"
-            InputLabelProps={{
-                shrink: true,
-            }}
-            onChange={handleChange}
-            required
-            />
+          id='standard-number'
+          label='Volume'
+          type='number'
+          InputLabelProps={{
+            shrink: true
+          }}
+          onChange={handleChange}
+          required
+        />
         <Button type='submit' onClick={submitForm}>Confirm Buy</Button>
-        </form>
+      </form>
     </div>
-  );
+  )
 
   return (
     <div>
-      <StyledButton onClick={handleOpen}>
+      <ColorButton onClick={handleOpen}>
         Buy
-      </StyledButton>
+      </ColorButton>
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
+        aria-labelledby='simple-modal-title'
+        aria-describedby='simple-modal-description'
       >
         {body}
       </Modal>
     </div>
-  );
+  )
 }
 
-export default BuyPrompt;
+export default BuyPrompt
