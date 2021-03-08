@@ -50,10 +50,12 @@ class Nav extends Component {
                         <Toolbar className={classes.toolBarStyle}>
                             <ShowChartIcon/>
                             <Typography className={classes.brandStyle}>Stonk Labs</Typography>
-                            <AccountCircleIcon className={classes.iconStyle} />
-                            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
-                                {this.props.user.username}
-                            </Button>
+                            <AccountCircleIcon className="account-icon"/>
+                            <span className="username-icon">
+                              <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+                                  {this.props.user.username}
+                              </Button>
+                            </span>
                             <Menu
                                 TransitionComponent={Fade}
                                 id="simple-menu"
