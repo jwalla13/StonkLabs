@@ -32,6 +32,7 @@ Open terminal and navigate to target project folder
 10) npm start
 
 **Back End:**
+
 Open terminal and navigate to target project folder
 1) Git init
 2) Git add origin https://github.com/WesReynolds/StonksBackend
