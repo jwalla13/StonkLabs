@@ -34,7 +34,7 @@ Open terminal and navigate to target project folder
 
 Open terminal and navigate to target project folder
 1) Git init
-2) Git add origin https://github.com/WesReynolds/StonksBackend
+2) Git remote add origin https://github.com/WesReynolds/StonksBackend
 3) Git pull origin master
 4) Install Flask here: https://flask.palletsprojects.com/en/1.1.x/installation/ 
 5) pip install -r requirements.txt
