@@ -49,7 +49,7 @@ https://github.com/jwalla13/StonkLabs/wiki
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-**CI**
+# Continuous Integration (Travis)
 
 Front End: https://travis-ci.com/github/jwalla13/StonkLabs
 
