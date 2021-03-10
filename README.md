@@ -53,6 +53,9 @@ Front End: https://travis-ci.com/github/jwalla13/StonkLabs
 
 Back End: https://travis-ci.com/github/WesReynolds/StonksBackend
 
+Code Coverage for LinkingFuncs(discussed in office hours):
+![](https://github.com/jwalla13/StonkLabs/blob/master/Screen%20Shot%202021-03-10%20at%2010.41.03%20AM.png)
+
 
 # Set Up Your Style Guide
 
