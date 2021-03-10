@@ -63,7 +63,8 @@ function DetailedStockView (props) {
       <OuterContainer>
         <h3 className='stock-header'> {currentStock.currentStockInfo.Name} ({currentStock.ticker}) </h3>
         <StyledButton onClick={closeView} className='exit-view-button' variant='contained'> <b> X </b></StyledButton>
-        {inWatchlist() ? <StyledButton onClick={removeFromWatchlist} variant='contained'> <b> (-) Watchlist </b></StyledButton>
+        {inWatchlist()
+          ? <StyledButton onClick={removeFromWatchlist} variant='contained'> <b> (-) Watchlist </b></StyledButton>
           : <StyledButton onClick={addToWatchlist} variant='contained'> <b> (+) Watchlist </b></StyledButton>}
         <DetailedStockTable currentStock={currentStock} />
         <SellPrompt currentStock={currentStock} loggedUsername={username} loggedIn={loggedIn} setPortfolio={setPortfolio}> </SellPrompt>

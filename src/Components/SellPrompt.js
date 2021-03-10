@@ -63,7 +63,7 @@ function SellPrompt (props) {
   const loggedUsername = props.loggedUsername
 
   const handleChange = event => {
-    const { name, value } = event.target
+    const { value } = event.target
     setsellVolume(value)
   }
 

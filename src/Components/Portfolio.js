@@ -88,26 +88,30 @@ function Portfolio (props) {
             <h3>Percent Change: {stockList[stockList.length - 1].totalChange}%</h3>
           </div>
           <OuterContainer className='watchlist-box'>
-            {stockList.map((stock) => {
+            {console.log(stockList)}
+            {stockList.filter((stock) => {
+              if (stock.volume <= 0) {
+                return false
+              }
+              return true
+            }).map((stock) => {
               const stockName = stock.ticker
               const stockPerc = stock.percentage
               const stockVolume = stock.volume
               const positionValue = stock.posValue
               const curPrice = stock.price
-              if (stockVolume > 0) {
-                return (
-                  <InnerContainer>
-                    <ViewButton id={stockName} variant='contained' onClick={viewDetails}> <b> View Details </b> </ViewButton>
-                    <SellPrompt currentStock={stock} loggedUsername={props.user.username} loggedIn={props.user.loggedIn}> </SellPrompt>
-                    <BuyPrompt currentStock={stock} loggedUsername={props.user.username} loggedIn={props.user.loggedIn}> </BuyPrompt>
-                    <ValueWithLabel label='Name:' value={stockName} />
-                    <ValueWithLabel label='Cur. Price:' symbol='$' value={curPrice} />
-                    <ValueWithLabel label='% Change:' backSymbol='%' value={stockPerc} />
-                    <ValueWithLabel label='Num. Shares:' value={stockVolume} />
-                    <ValueWithLabel label='Position Value:' symbol='$' value={positionValue} />
-                  </InnerContainer>
-                )
-              }
+              return (
+                <InnerContainer key={stockName}>
+                  <ViewButton id={stockName} variant='contained' onClick={viewDetails}> <b> View Details </b> </ViewButton>
+                  <SellPrompt currentStock={stock} loggedUsername={props.user.username} loggedIn={props.user.loggedIn}> </SellPrompt>
+                  <BuyPrompt currentStock={stock} loggedUsername={props.user.username} loggedIn={props.user.loggedIn}> </BuyPrompt>
+                  <ValueWithLabel label='Name:' value={stockName} />
+                  <ValueWithLabel label='Cur. Price:' symbol='$' value={curPrice} />
+                  <ValueWithLabel label='% Change:' backSymbol='%' value={stockPerc} />
+                  <ValueWithLabel label='Num. Shares:' value={stockVolume} />
+                  <ValueWithLabel label='Position Value:' symbol='$' value={positionValue} />
+                </InnerContainer>
+              )
             })}
           </OuterContainer>
         </Frame>

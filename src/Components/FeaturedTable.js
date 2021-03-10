@@ -72,7 +72,7 @@ function FeaturedTable (props) {
           const stockName = stock.ticker
           const stockPrice = stock.price
           return (
-            <InnerContainer>
+            <InnerContainer key={stockName}>
               <ViewButton id={stockName} variant='contained' onClick={viewDetails}> <b> View Details </b> </ViewButton>
               <ValueWithLabel label='Name:' value={stockName} />
               <ValueWithLabel label='Price:' symbol='$' value={stockPrice} />

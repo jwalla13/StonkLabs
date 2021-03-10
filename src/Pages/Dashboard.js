@@ -51,8 +51,8 @@ function DashboardPage (props) {
     apiClient.updateCache()
     apiClient.getPortfolio(userInfo.username, setPortfolio)
     apiClient.getWatchlist(userInfo.username, setWatchlist)
-    apiClient.getFeaturedStocks(setFeaturedStocks);
-    apiClient.getMoverStocks(setMoverStocks);
+    apiClient.getFeaturedStocks(setFeaturedStocks)
+    apiClient.getMoverStocks(setMoverStocks)
   }, [userInfo])
 
   const [value, setValue] = useState('Trending')
@@ -92,17 +92,19 @@ function DashboardPage (props) {
               currentStock={currentStock} setCurrentStock={setCurrentStock}
               userInfo={userInfo} watchlist={watchlist.list} setWatchlist={setWatchlist} setPortfolio={setPortfolio}
             />
-            {featuredStocks.isLoading ? <div />
+            {featuredStocks.isLoading
+              ? <div />
               : <AppBar color='default' className='tabs-bar' position='static'>
-                  <Tabs indicatorColor='primary' textColor='primary' value={value} onChange={toggleView}>
-                    <Tab value='Trending' label='Trending' />
-                    <Tab value='Biggest Movers' label='Biggest Movers' />
+                <Tabs indicatorColor='primary' textColor='primary' value={value} onChange={toggleView}>
+                  <Tab value='Trending' label='Trending' />
+                  <Tab value='Biggest Movers' label='Biggest Movers' />
                 </Tabs>
                 </AppBar>}
-            {viewTrending ? <FeaturedTableDisplay
-              isLoading={featuredStocks.isLoading} featuredStocks={featuredStocks.list}
-              setCurrentStock={setCurrentStock} userInfo={userInfo}
-                            />
+            {viewTrending
+              ? <FeaturedTableDisplay
+                  isLoading={featuredStocks.isLoading} featuredStocks={featuredStocks.list}
+                  setCurrentStock={setCurrentStock} userInfo={userInfo}
+                />
               : <MoversTableDisplay
                   isLoading={moverStocks.isLoading} moverStocks={moverStocks.list}
                   setCurrentStock={setCurrentStock} userInfo={userInfo}

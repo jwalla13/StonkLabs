@@ -96,7 +96,7 @@ function Watchlist (props) {
             const stockName = stock.ticker
             const stockPrice = stock.price
             return (
-              <InnerContainer>
+              <InnerContainer key={stockName}>
                 <CloseButton id={stockName} variant='contained' onClick={removeFromWatchlist}> <b> Remove </b> </CloseButton>
                 <ViewButton id={stockName} variant='contained' onClick={viewDetails}> <b> View Details </b> </ViewButton>
                 <ValueWithLabel label='Name: ' value={stockName} />

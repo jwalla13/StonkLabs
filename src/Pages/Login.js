@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/styles'
 import { Link } from 'react-router-dom'
 import LoginForm from '../Components/LoginForm'
 import axios from 'axios'
-import UserAccountTable from '../Components/UserAccountTable'
 import Alert from '@material-ui/lab/Alert'
 import Collapse from '@material-ui/core/Collapse'
 import IconButton from '@material-ui/core/IconButton'
@@ -32,47 +31,8 @@ const useStyles = makeStyles({
 })
 
 function Login (props) {
-  const [characters, setCharacters] = useState([])
   const [open, setOpen] = useState(false)
   const classes = useStyles()
-
-  const componentDidMount = () => {
-    axios.get('http://localhost:5000/users')
-      .then(res => {
-        const characters = res.data.users_list
-        setCharacters({ characters })
-      })
-      .catch(function (error) {
-        // Not handling the error. Just logging into the console.
-        console.log(error)
-      })
-  }
-
-  const removeCharacter = index => {
-    const { characters } = characters
-
-    makeDelCall(characters, index).then(callResult => {
-      if (callResult === true) {
-        setCharacters({
-          characters: characters.filter((character, i) => {
-            return i !== index
-          })
-        })
-      }
-    })
-  }
-
-  const makeDelCall = (characters, index) => {
-    return axios.delete('http://localhost:5000/users', { data: characters[index] })
-      .then(function (response) {
-        console.log(response)
-        return response.status === 200
-      })
-      .catch(function (error) {
-        console.log(error)
-        return false
-      })
-  }
 
   const handleSubmit = character => {
     makePostCall(character).then(callResult => {

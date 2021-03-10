@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Button, Typography, Grid } from '@material-ui/core'
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles'
-import UserAccountTable from '../Components/UserAccountTable'
 import SignUpForm from '../Components/SignUpForm'
 import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
@@ -114,7 +113,6 @@ class Signup extends Component {
   render() {
 
     const { classes } = this.props
-    const { characters } = this.state
 
     return (
         <Grid container direction="column">
